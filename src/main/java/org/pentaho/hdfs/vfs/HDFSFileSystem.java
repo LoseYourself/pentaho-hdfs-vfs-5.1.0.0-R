@@ -84,7 +84,14 @@ public class HDFSFileSystem extends AbstractFileSystem implements FileSystem {
       }
       setFileSystemOptions( getFileSystemOptions(), conf );
       try {
-        hdfs = new HadoopFileSystemImpl( org.apache.hadoop.fs.FileSystem.get( conf ) );
+
+        if (genericFileName.getUserName() != null && !"".equals(genericFileName.getUserName())) {
+          hdfs = new HadoopFileSystemImpl( org.apache.hadoop.fs.FileSystem.get( org.apache.hadoop.fs.FileSystem.getDefaultUri(conf), conf, genericFileName.getUserName() ) );
+        } else {
+          hdfs = new HadoopFileSystemImpl( org.apache.hadoop.fs.FileSystem.get( conf ) );
+        }
+
+        // hdfs = new HadoopFileSystemImpl( org.apache.hadoop.fs.FileSystem.get( conf ) );
       } catch (Throwable t) {
         throw new FileSystemException("Could not getHDFSFileSystem() for " + url, t);
       }

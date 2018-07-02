@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.pentaho</groupId>
   <artifactId>pentaho-hdfs-vfs</artifactId>
-  <version>5.1.0.0-752-kerberos</version>
+  <version>5.1.0.0-752</version>
 
   <properties>
     <!-- VERSIONS -->
